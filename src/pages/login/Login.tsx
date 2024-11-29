@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function Register() {
+export default function Login() {
   return (
     <div className='bg-orange'>
       <div className='max-w-7xl mx-auto px-4'>
@@ -8,7 +8,7 @@ export default function Register() {
           {/* lg:col-start-4: chiếm từ cột 4,5 chiếm 2 cột vì lg:col-span-2 */}
           <div className='lg:col-span-2 lg:col-start-4 bg-blue-400'>
             <form className='p-10 rounded bg-white shadow-sm'>
-              <div className='text-2xl'>Đăng Ký</div>
+              <div className='text-2xl'>Đăng Nhập</div>
               <div className='mt-8'>
                 <input
                   type='email'
@@ -33,14 +33,14 @@ export default function Register() {
               </div>
               <div className='mt-3'>
                 <button className='w-full text-center py-4 px-2 uppercase bg-red-500 text-white text-sm hover:bg-red-600'>
-                  Đăng Ký
+                  Đăng Nhập
                 </button>
               </div>
               <div className="flex items-center justify-center mt-8">
                 <span className="text-gray-400">
-                  Bạn đã có tài khoản?
+                  Bạn chưa có tài khoản?
                 </span>
-                <Link className="text-red-400 pl-1" to='/login'>Đăng nhập</Link>
+                <Link className="text-red-400 pl-1" to='/register'>Đăng ký</Link>
               </div>
             </form>
           </div>
