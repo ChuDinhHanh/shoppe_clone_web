@@ -8,7 +8,7 @@ interface Props {
 export default function RegisterLayout({ children }: Readonly<Props>) {
   return (
     <div>
-      <RegisterHeader />
+      <RegisterHeader title={'Đăng ký'} />
       {children}
       <Footer />
     </div>

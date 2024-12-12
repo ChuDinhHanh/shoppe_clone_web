@@ -1,7 +1,11 @@
 import { UseFormGetValues, type RegisterOptions } from 'react-hook-form'
-import { FormData } from '../types/utils.type'
 import * as yup from 'yup'
 
+type FormData = {
+  email: string
+  password: string
+  confirm_password: string
+}
 // Type - 1
 type Rules = { [key in 'email' | 'password' | 'confirm_password']?: RegisterOptions }
 

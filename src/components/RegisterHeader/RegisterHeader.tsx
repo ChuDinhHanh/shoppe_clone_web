@@ -1,7 +1,10 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default function RegisterHeader() {
+interface Props {
+  title?: string
+}
+
+export default function RegisterHeader({ title }: Props) {
   // py-5 > padding vertical 5
   return (
     <header className='py-5'>
@@ -15,7 +18,7 @@ export default function RegisterHeader() {
               </g>
             </svg>
           </Link>
-          <div className='ml-5 text-xl lg:text-2xl'>Đăng ký</div>
+          <div className='ml-5 text-xl lg:text-2xl'>{title}</div>
         </nav>
       </div>
     </header>

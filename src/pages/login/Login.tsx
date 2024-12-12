@@ -3,20 +3,46 @@ import { Link } from 'react-router-dom'
 import Input from '../../components/Inputs'
 import { loginSchema, LoginSchema } from '../../utils/rules'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useMutation } from '@tanstack/react-query'
+import { login } from '../../apis/auth.api'
+import { isAxiosUnprocessableEntityError } from '../../utils/untils'
+import { ResponseApi } from '../../types/untils.type'
 
 type FormData = LoginSchema
 export default function Login() {
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors }
   } = useForm<FormData>({
     resolver: yupResolver(loginSchema)
   })
 
+  const loginMutation = useMutation({
+    mutationFn: (body: FormData) => login(body)
+  })
+
   const onSubmit = handleSubmit(
     (data) => {
-      console.log(JSON.stringify(data))
+      loginMutation.mutate(data, {
+        onSuccess: (data) => {
+          console.log('success', data)
+        },
+        onError: (error) => {
+          if (isAxiosUnprocessableEntityError<ResponseApi<FormData>>(error)) {
+            const formError = error.response?.data.data
+            if (formError) {
+              Object.keys(formError).forEach((key) => {
+                setError(key as keyof FormData, {
+                  message: formError[key as keyof FormData],
+                  type: 'Server'
+                })
+              })
+            }
+          }
+        }
+      })
     },
     () => {
       console.log('fails')
